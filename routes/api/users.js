@@ -2,13 +2,15 @@ const express = require("express");
 const router = express.Router();
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require('../../config/keys');
 
 // For avatar uploads
 const cloudinary = require("cloudinary");
 // Credentials for cloudinary
-const cloudName = require("../../config/keys").cloud_name;
-const cloudKey = require("../../config/keys").cloudinary_api_key;
-const cloudSecret = require("../../config/keys").cloudinary_api_secret;
+const cloudName = keys.cloud_name;
+const cloudKey = keys.cloudinary_api_key;
+const cloudSecret = keys.cloudinary_api_secret;
 cloudinary.config({
   cloud_name: cloudName,
   api_key: cloudKey,
@@ -76,7 +78,13 @@ router.post("/login", (req, res) => {
     bcrypt.compare(password, user.password).then(isMatch => {
       // Passes back a boolean is passwords match
       if (isMatch) {
+        // User matched
         res.json({ msg: "Success!" });
+
+        // Payload for JWT
+        const payload = { id: user.id, name: user.name, avatar: user.avatar };
+        // Sign Token
+        jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 });
       } else {
         return res.status(400).json({ password: "Password incorrect" });
       }
