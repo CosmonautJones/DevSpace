@@ -6,6 +6,9 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 
+// Load input Validation
+const validateRegisterInput = require('../../validation/register');
+
 // For avatar uploads
 const cloudinary = require("cloudinary");
 // Credentials for cloudinary
@@ -34,6 +37,14 @@ router.get("/test", (req, res) =>
 // @desc     Register User
 // @access   Public
 router.post("/register", (req, res) => {
+  // destructuring variables
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  // Check Validation
+  if(!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({
     email: req.body.email
   }).then(user => {
@@ -127,7 +138,11 @@ router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.json(req.user);
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    })
   }
 );
 
