@@ -3,7 +3,8 @@ const router = express.Router();
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require('../../config/keys');
+const keys = require("../../config/keys");
+const passport = require("passport");
 
 // For avatar uploads
 const cloudinary = require("cloudinary");
@@ -23,9 +24,11 @@ const User = require("../../models/User");
 // @route    GET api/users/test
 // @desc     Tests users route
 // @access   Public
-router.get("/test", (req, res) => res.json({
-  msg: "Users works!"
-}));
+router.get("/test", (req, res) =>
+  res.json({
+    msg: "Users works!"
+  })
+);
 
 // @route    GET api/users/register
 // @desc     Register User
@@ -87,7 +90,8 @@ router.post("/login", (req, res) => {
     // Check password -- Password from req.body && hashed password from DB
     bcrypt.compare(password, user.password).then(isMatch => {
       // Passes back a boolean is passwords match
-      if (isMatch) { // User matched
+      if (isMatch) {
+        // User matched
         // Payload for JWT
         const payload = {
           id: user.id,
@@ -97,14 +101,15 @@ router.post("/login", (req, res) => {
         // Sign Token
         jwt.sign(
           payload,
-          keys.secretOrKey, 
+          keys.secretOrKey,
           { expiresIn: 3600 },
           (err, token) => {
             res.json({
               success: true,
-              token: 'Bearer ' + token
-            })
-          });
+              token: "Bearer " + token
+            });
+          }
+        );
       } else {
         return res.status(400).json({
           password: "Password incorrect"
@@ -113,5 +118,17 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+// @route    GET api/users/current
+// @desc     Returns current user
+// @access   Private
+// Creates a protected route!
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json(req.user);
+  }
+);
 
 module.exports = router;
