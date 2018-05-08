@@ -14,6 +14,7 @@ import Login from "./Components/auth/Login";
 
 import "./App.css";
 
+// To persist the token throughout app and through refreshes
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
