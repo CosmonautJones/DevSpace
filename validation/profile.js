@@ -69,7 +69,7 @@ module.exports = function validateProfileInput(data) {
   }
 
   return {
-    errors: errors,
+    errors,
     isValid: isEmpty(errors)
   };
 };
