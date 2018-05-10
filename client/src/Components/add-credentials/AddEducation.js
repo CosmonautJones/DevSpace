@@ -32,8 +32,8 @@ class AddEducation extends Component {
     }
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
 
     const eduData = {
       school: this.state.school,
@@ -48,11 +48,11 @@ class AddEducation extends Component {
     this.props.addEducation(eduData, this.props.history);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  onCheck(e) {
+  onCheck(event) {
     this.setState({
       disabled: !this.state.disabled,
       current: !this.state.current
