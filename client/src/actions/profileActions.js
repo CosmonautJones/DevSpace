@@ -28,7 +28,7 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 
-// get profile by handle
+// get profile by handle URL
 export const getProfileByHandle = (handle) => dispatch => {
   dispatch(setProfileLoading());
   axios
