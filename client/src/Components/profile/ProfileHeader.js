@@ -27,6 +27,7 @@ class ProfileHeader extends Component {
                 )}
               </p>
               {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
+              {/* Check to see if website is avaliable for display */}
               <p>
                 {isEmpty(profile.website) ? null : (
                   <a
@@ -37,7 +38,7 @@ class ProfileHeader extends Component {
                     <i className="fas fa-globe fa-2x" />
                   </a>
                 )}
-
+                {/* Check to see if twitter is avaliable for display */}
                 {isEmpty(profile.social && profile.social.twitter) ? null : (
                   <a
                     className="text-white p-2"
@@ -47,7 +48,7 @@ class ProfileHeader extends Component {
                     <i className="fab fa-twitter fa-2x" />
                   </a>
                 )}
-
+                {/* Check to see if facebook is avaliable for display */}
                 {isEmpty(profile.social && profile.social.facebook) ? null : (
                   <a
                     className="text-white p-2"
@@ -57,7 +58,7 @@ class ProfileHeader extends Component {
                     <i className="fab fa-facebook fa-2x" />
                   </a>
                 )}
-
+                {/* Check to see if linkedin is avaliable for display */}
                 {isEmpty(profile.social && profile.social.linkedin) ? null : (
                   <a
                     className="text-white p-2"
@@ -67,7 +68,7 @@ class ProfileHeader extends Component {
                     <i className="fab fa-linkedin fa-2x" />
                   </a>
                 )}
-
+                {/* Check to see if youtube is avaliable for display */}
                 {isEmpty(profile.social && profile.social.youtube) ? null : (
                   <a
                     className="text-white p-2"
@@ -77,7 +78,7 @@ class ProfileHeader extends Component {
                     <i className="fab fa-youtube fa-2x" />
                   </a>
                 )}
-
+                {/* Check to see if instagram is avaliable for display */}
                 {isEmpty(profile.social && profile.social.instagram) ? null : (
                   <a
                     className="text-white p-2"
