@@ -21,4 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # config
-/config
+/config/key_dev.js

@@ -1,5 +1,5 @@
 /node_modules
 /client/node_modules
-/config
+/config/key_dev.js
 /.vscode
 package-lock.json
