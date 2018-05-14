@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
+
 import Spinner from "../common/Spinner";
 import ProfileActions from './ProfilefileActions';
 import Experience from './Experience'
@@ -31,7 +32,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted"> 
-              Welcome <Link to={`/profile${profile.handle}`}> {user.name} </Link>
+              Welcome <Link to={`/profile/${profile.handle}`}> {user.name} </Link>
             </p>
             <ProfileActions />
             <Experience experience={profile.experience} />
