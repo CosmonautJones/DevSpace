@@ -11,7 +11,7 @@ const store = createStore(
   initialState,
   compose(
     applyMiddleware(...middleware), // using the spread operator
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // For the Redux Dev tool in Chrome
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // For the Redux Dev tool in Chrome
   )
 );
 
