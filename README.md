@@ -1,6 +1,8 @@
 ## DevConnector!
 DevConnector is a social space for developers to get together and discuss technologies and all of the like.
 
+Here is the hosted project using Heroku: https://developer-connector.herokuapp.com/
+
 Quick Start
 
 ```
